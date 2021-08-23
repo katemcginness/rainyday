@@ -138,10 +138,11 @@ if (isset($_GET["id"])) {
     <table>
         <tr>
             <th style="display:none;">Expense ID</th>
-            <th style="width: 25%;">Expense name</th>
-            <th style="width: 25%;">Expense amount</th>
-            <th style="width: 25%;">Expense frequency</th>
-            <th style="width: 25%;">Actions</th>
+            <th style="width: 20%;">Expense name</th>
+            <th style="width: 20%;">Expense amount</th>
+            <th style="width: 20%;">Expense frequency</th>
+            <th style="width: 20%;">Actions</th>
+            <th style="width: 20%;">Expense annually</th>
         </tr>
     </table>
     </div>
@@ -155,12 +156,31 @@ if (isset($_GET["id"])) {
         <table>
         <tr>
             <td style="display:none;"><?php echo $row['id']; ?></td>   
-            <td style="width: 25%;"><?php echo $row['expensename']; ?></td>
-            <td style="width: 25%;"><?php echo $row['expenseamount']; ?></td>
-            <td style="width: 25%;"><?php echo $row['expensefrequency']; ?></td>
-            <td style="width: 25%;">
-                <a href='index.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
+            <td style="width: 20%;"><?php echo $row['expensename']; ?></td>
+            <td style="width: 20%;"><?php echo $row['expenseamount']; ?></td>
+            <td style="width: 20%;"><?php echo $row['expensefrequency']; ?></td>
+            <td style="width: 20%;">
+                <a href='editincome.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
                 <a href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
+            </td>
+            <td style="width: 20%;">
+                <?php 
+
+                    if ($row['expensefrequency'] == 'Weekly') {
+                        $annualexpenses = $row['expenseamount'] * 52; 
+                        echo '$' . $annualexpenses;
+                    }     
+
+                    if ($row['expensefrequency'] == 'Fortnightly') {
+                        $annualexpenses = $row['expenseamount'] * 26; 
+                        echo '$' . $annualexpenses;
+                    }
+
+                    if ($row['expensefrequency'] == 'Monthly') {
+                        $annualexpenses = $row['expenseamount'] * 12; 
+                        echo '$' . $annualexpenses;
+                    }
+                ?>
             </td>
         </tr>
         </table>
@@ -173,5 +193,13 @@ if (isset($_GET["id"])) {
     ;
 ;
 ?>
+
+<div class="container">
+    <div class="col s12">
+        <h5>Total expenses</h5>
+        <p>How do I add up all the annual expenses?</p>
+        <p><?php echo '$' . $annualexpenses . " per year"; ?></p>
+    </div>
+</div>
 
 </div>

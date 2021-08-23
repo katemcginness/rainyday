@@ -16,26 +16,26 @@ if (isset($_GET['id'])) {
                 $connection = new PDO($dsn, $username, $password, $options);  
                 
                 //grab elements from form and set as varaible
-                $income =[
+                $expenses =[
                     "id"         => $_POST['id'],
-                    "incomename" => $_POST['incomename'],
-                    "incomeamount"  => $_POST['incomeamount'],
-                    "incomefrequency"   => $_POST['incomefrequency']
+                    "expensename" => $_POST['expensename'],
+                    "expenseamount"  => $_POST['expenseamount'],
+                    "expensefrequency"   => $_POST['expensefrequency']
                 ];
             
                 // create SQL statement
-                $sql = "UPDATE `income` 
+                $sql = "UPDATE `expenses` 
                         SET id = :id, 
-                            incomename = :incomename, 
-                            incomeamount = :incomeamount, 
-                            incomefrequency = :incomefrequency
+                            expensename = :expensename, 
+                            expenseamount = :expenseamount, 
+                            expensefrequency = :expensefrequency
                         WHERE id = :id";
             
                 //prepare sql statement
                 $statement = $connection->prepare($sql);
             
                 //execute sql statement
-                $statement->execute($income);
+                $statement->execute($expenses);
   
                 
                 } catch(PDOException $error) {
@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         //select statement to get the right data
-        $sql = "SELECT * FROM income WHERE id = :id";
+        $sql = "SELECT * FROM expenses WHERE id = :id";
 
         // prepare the connection
         $statement = $connection->prepare($sql);
@@ -72,42 +72,27 @@ if (isset($_GET['id'])) {
 
 <div class="container">
     <div class="col s12">
-        <h2>Edit income</h2>
+        <h2>Edit expense</h2>
         <p>How to input the value into a select?</p>
             <form method="post">
                 <div class="row">
                     
-                    <input type="hidden" name="id" id="id" value="<?php echo escape($income['id']); ?>" > 
+                    <input type="hidden" name="id" id="id" value="<?php echo escape($expenses['id']); ?>" > 
 
                     <div class="col s4">
-                        <label for="incomename">Income name</label>    
-                        <input type="text" name="incomename" id="incomename" class="validate" value="<?php echo escape($income['incomename']); ?>">                   
+                        <label for="expensename">Expense name</label>    
+                        <input type="text" name="expensename" id="expensename" class="validate" value="<?php echo escape($expenses['expensename']); ?>">                   
                     </div>
                 
                     <div class="col s4">
-                        <label for="incomeamount">Income amount (to the dollar)</label>
-                        <input type="text" name="incomeamount" id="incomeamount" class="validate" value="<?php echo escape($income['incomeamount']); ?>">
+                        <label for="expenseamount">Expense amount (to the dollar)</label>
+                        <input type="text" name="expenseamount" id="expenseamount" class="validate" value="<?php echo escape($expenses['expenseamount']); ?>">
                     </div>
 
                     <div class="col s4">
-                        <label for="incomefrequency">Income amount (to the dollar)</label>
-                        <input type="text" name="incomefrequency" id="incomefrequency" class="validate" value="<?php echo escape($income['incomefrequency']); ?>">
+                        <label for="expensefrequency">Expense amount (to the dollar)</label>
+                        <input type="text" name="expensefrequency" id="expensefrequency" class="validate" value="<?php echo escape($expenses['expensefrequency']); ?>">
                     </div>
-
-                    <!-- <div class="col s4">
-                        <?php
-                            $options = '<option value="Weekly">Weekly</option>
-                            <option value="Fortnightly">Fortnightly</option>
-                            <option value="Monthly">Monthly</option>';
-
-                            $code = "Weekly";
-                            $pattern = sprintf('/value="%s"/m', $code);
-                            $replace = sprintf('value="%s" SELECTED', $code);
-                            $out = preg_replace($pattern, $replace, $options);
-
-                            printf('<select name="incomefrequency" id="incomefrequency">%s</select>', $out);
-                        ?>
-                    </div> -->
                     
                     
             

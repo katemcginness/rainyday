@@ -53,19 +53,14 @@ if (isset($_POST['addincome'])) {
                 </div>
 
                 <div class="input-field col s4">
-                    <input type="text" name="incomefrequency" id="incomefrequency" class="validate">
-                    <label for="incomefrequency">Income frequency</label>
+                <select name="incomefrequency" id="incomefrequency">
+                    <option value="Weekly">Weekly</option>
+                    <option value="Fortnightly">Fortnightly</option>
+                    <option value="Monthly">Monthly</option>
+                </select>
                 </div>
             
-                <!-- <div class="input-field col s4">
-                    <select name="incomefrequency" id="incomefrequency">
-                        <option value="">Choose frequency</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="fortnlightly">Fortnightly</option>
-                        <option value="monthly">Monthly</option>
-                    </select>    
-                    <label for="incomefrequency">Income frequency</label>
-                </div> -->
+                
             </div>
             <div class="row">
             <input  class="btn waves-effect waves-light" type="submit" name="addincome" value="Add income">
@@ -135,10 +130,11 @@ if (isset($_POST['addincome'])) {
     <table>
         <tr>
             <th style="display:none;">Income ID</th>
-            <th style="width: 25%;">Income name</th>
-            <th style="width: 25%;">Income amount</th>
-            <th style="width: 25%;">Income frequency</th>
-            <th style="width: 25%;">Actions</th>
+            <th style="width: 20%;">Income name</th>
+            <th style="width: 20%;">Income amount</th>
+            <th style="width: 20%;">Income frequency</th>
+            <th style="width: 20%;">Actions</th>
+            <th style="width: 20%;">Income annually</th>
         </tr>
     </table>
     </div>
@@ -152,17 +148,38 @@ if (isset($_POST['addincome'])) {
         <table>
         <tr>
             <td style="display:none;"><?php echo $row['id']; ?></td>   
-            <td style="width: 25%;"><?php echo $row['incomename']; ?></td>
-            <td style="width: 25%;"><?php echo $row['incomeamount']; ?></td>
-            <td style="width: 25%;"><?php echo $row['incomefrequency']; ?></td>
-            <td style="width: 25%;">
+            <td style="width: 20%;"><?php echo $row['incomename']; ?></td>
+            <td style="width: 20%;"><?php echo '$' . $row['incomeamount']; ?></td>
+            <td style="width: 20%;"><?php echo $row['incomefrequency']; ?></td>
+            <td style="width: 20%;">
                 <a href='editincome.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
                 <a onclick="return confirm('Are you sure you want to delete?')" href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
+            </td>
+            <td style="width: 20%;">
+                <?php 
+
+                    if ($row['incomefrequency'] == 'Weekly') {
+                        $annualincome = $row['incomeamount'] * 52; 
+                        echo '$' . $annualincome;
+                    }     
+
+                    if ($row['incomefrequency'] == 'Fortnightly') {
+                        $annualincome = $row['incomeamount'] * 26; 
+                        echo '$' . $annualincome;
+                    }
+
+                    if ($row['incomefrequency'] == 'Monthly') {
+                        $annualincome = $row['incomeamount'] * 12; 
+                        echo '$' . $annualincome;
+                    }
+                ?>
             </td>
         </tr>
         </table>
     </div>
 </div>
+
+
 
 <?php }
         ; //close the foreach
@@ -170,4 +187,13 @@ if (isset($_POST['addincome'])) {
     ;
 ;
 ?>
+
+<div class="container">
+    <div class="col s12">
+        <h5>Total income</h5>
+        <p>How do I add up all the annual incomes?</p>
+        <p><?php echo '$' . $annualincome . " per year"; ?></p>
+    </div>
+</div>
+
 </div>
