@@ -157,7 +157,7 @@ if (isset($_POST['addincome'])) {
             <td style="width: 25%;"><?php echo $row['incomefrequency']; ?></td>
             <td style="width: 25%;">
                 <a href='editincome.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
-                <a href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
+                <a onclick="return confirm('Are you sure you want to delete?')" href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
             </td>
         </tr>
         </table>
