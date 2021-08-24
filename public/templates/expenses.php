@@ -160,7 +160,7 @@ if (isset($_GET["id"])) {
             <td style="width: 20%;"><?php echo $row['expenseamount']; ?></td>
             <td style="width: 20%;"><?php echo $row['expensefrequency']; ?></td>
             <td style="width: 20%;">
-                <a href='editincome.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
+                <a href='editexpenses.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
                 <a href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
             </td>
             <td style="width: 20%;">
