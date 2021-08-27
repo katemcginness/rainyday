@@ -141,7 +141,11 @@ if (isset($_POST['addincome'])) {
     </div>
     <?php
         // This is a loop, which will loop through each result in the array
-            foreach ($result as $row) {
+        $annualincome = 0;
+        $totalincome = 0;
+
+        foreach ($result as $row) {
+                
         ?>
  <div class="container">
     <div class="col s12">
@@ -163,15 +167,16 @@ if (isset($_POST['addincome'])) {
                         echo '$' . $annualincome;
                     }     
 
-                    if ($row['incomefrequency'] == 'Fortnightly') {
+                    elseif ($row['incomefrequency'] == 'Fortnightly') {
                         $annualincome = $row['incomeamount'] * 26; 
                         echo '$' . $annualincome;
                     }
 
-                    if ($row['incomefrequency'] == 'Monthly') {
+                    elseif ($row['incomefrequency'] == 'Monthly') {
                         $annualincome = $row['incomeamount'] * 12; 
                         echo '$' . $annualincome;
                     }
+                    $totalincome += $annualincome;
                 ?>
             </td>
         </tr>
@@ -192,7 +197,7 @@ if (isset($_POST['addincome'])) {
     <div class="col s12">
         <h5>Total income</h5>
         <p>How do I add up all the annual incomes?</p>
-        <p><?php echo '$' . $annualincome . " per year"; ?></p>
+        <p><?php echo '$' . $totalincome . " per year"; ?></p>
     </div>
 </div>
 

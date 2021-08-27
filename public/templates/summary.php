@@ -18,13 +18,13 @@
                     </td>
                     <td>
                         <?php 
-                            $weeklyincome = $annualincome / 52;
+                            $weeklyincome = $totalincome / 52;
                             echo '$' . round($weeklyincome, 2);
                         ?>
                     </td>
                     <td>
                         <?php 
-                            $weeklyexpenses = $annualexpenses / 52;
+                            $weeklyexpenses = $totalexpenses / 52;
                             echo '$' . round($weeklyexpenses, 2);
                         ?>
                     </td>
@@ -41,13 +41,13 @@
                     </td>
                     <td>
                         <?php 
-                            $weeklyincome = $annualincome / 26;
+                            $weeklyincome = $totalincome / 26;
                             echo '$' . round($weeklyincome, 2);
                         ?>
                     </td>
                     <td>
                         <?php 
-                            $weeklyexpenses = $annualexpenses / 26;
+                            $weeklyexpenses = $totalexpenses / 26;
                             echo '$' . round($weeklyexpenses, 2);
                         ?>
                     </td>
@@ -64,13 +64,13 @@
                     </td>
                     <td>
                         <?php 
-                            $weeklyincome = $annualincome / 12;
+                            $weeklyincome = $totalincome / 12;
                             echo '$' . round($weeklyincome, 2);
                         ?>
                     </td>
                     <td>
                         <?php 
-                            $weeklyexpenses = $annualexpenses / 12;
+                            $weeklyexpenses = $totalexpenses / 12;
                             echo '$' . round($weeklyexpenses, 2);
                         ?>
                     </td>
@@ -87,13 +87,13 @@
                     </td>
                     <td>
                         <?php 
-                            $weeklyincome = $annualincome;
+                            $weeklyincome = $totalincome;
                             echo '$' . round($weeklyincome, 2);
                         ?>
                     </td>
                     <td>
                         <?php 
-                            $weeklyexpenses = $annualexpenses;
+                            $weeklyexpenses = $totalexpenses;
                             echo '$' . round($weeklyexpenses, 2);
                         ?>
                     </td>

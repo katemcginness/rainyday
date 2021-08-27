@@ -148,7 +148,10 @@ if (isset($_GET["id"])) {
     </div>
     </div>
     <?php
-        // This is a loop, which will loop through each result in the array
+        $annualexpenses = 0;
+        $totalexpenses = 0;
+
+       // This is a loop, which will loop through each result in the array
             foreach ($result as $row) {
         ?>
  <div class="container">
@@ -171,15 +174,16 @@ if (isset($_GET["id"])) {
                         echo '$' . $annualexpenses;
                     }     
 
-                    if ($row['expensefrequency'] == 'Fortnightly') {
+                    elseif ($row['expensefrequency'] == 'Fortnightly') {
                         $annualexpenses = $row['expenseamount'] * 26; 
                         echo '$' . $annualexpenses;
                     }
 
-                    if ($row['expensefrequency'] == 'Monthly') {
+                    elseif ($row['expensefrequency'] == 'Monthly') {
                         $annualexpenses = $row['expenseamount'] * 12; 
                         echo '$' . $annualexpenses;
                     }
+                    $totalexpenses += $annualexpenses;
                 ?>
             </td>
         </tr>
@@ -198,7 +202,7 @@ if (isset($_GET["id"])) {
     <div class="col s12">
         <h5>Total expenses</h5>
         <p>How do I add up all the annual expenses?</p>
-        <p><?php echo '$' . $annualexpenses . " per year"; ?></p>
+        <p><?php echo '$' . $totalexpenses . " per year"; ?></p>
     </div>
 </div>
 

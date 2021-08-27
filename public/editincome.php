@@ -89,25 +89,40 @@ if (isset($_GET['id'])) {
                         <input type="text" name="incomeamount" id="incomeamount" class="validate" value="<?php echo escape($income['incomeamount']); ?>">
                     </div>
 
-                    <div class="col s4">
+                    <!-- <div class="col s4">
                         <label for="incomefrequency">Income amount (to the dollar)</label>
-                        <input type="text" name="incomefrequency" id="incomefrequency" class="validate" value="<?php echo escape($income['incomefrequency']); ?>">
+                        <input type="text" name="incomefrequency" id="incomefrequency" class="validate" value="<?php // echo escape($income['incomefrequency']); ?>">
+                    </div> -->
+                    
+                    <div class="input-field col s4">
+                    <label class="active" for="incomefrequency">Income frequency</label>
+                    <?php
+                    
+                        if($income['incomefrequency'] == "Weekly") {
+                            echo "<select class='visible' name='incomefrequency' id='incomefrequency'>
+                                <option selected value='Weekly'>Weekly</option>
+                                <option value='Fortnightly'>Fortnightly</option>
+                                <option value='Monthly'>Monthly</option>
+                            </select>";
+                        }
+                        elseif($income['incomefrequency'] == "Fortnightly") {
+                            echo "<select class='visible' name='incomefrequency' id='incomefrequency'>
+                                <option value='Weekly'>Weekly</option>
+                                <option selected value='Fortnightly'>Fortnightly</option>
+                                <option value='Monthly'>Monthly</option>
+                            </select>";
+                        }
+                        elseif($income['incomefrequency'] == "Monthly") {
+                            echo "<select class='visible' name='incomefrequency' id='incomefrequency'>
+                                <option value='Weekly'>Weekly</option>
+                                <option value='Fortnightly'>Fortnightly</option>
+                                <option selected value='Monthly'>Monthly</option>
+                            </select>";
+                        }
+                    ?>
                     </div>
 
-                    <!-- <div class="col s4">
-                        <?php
-                            $options = '<option value="Weekly">Weekly</option>
-                            <option value="Fortnightly">Fortnightly</option>
-                            <option value="Monthly">Monthly</option>';
-
-                            $code = "Weekly";
-                            $pattern = sprintf('/value="%s"/m', $code);
-                            $replace = sprintf('value="%s" SELECTED', $code);
-                            $out = preg_replace($pattern, $replace, $options);
-
-                            printf('<select name="incomefrequency" id="incomefrequency">%s</select>', $out);
-                        ?>
-                    </div> -->
+                
                     
                     
             
