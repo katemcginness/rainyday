@@ -7,7 +7,7 @@
                     <th style="width: 25%;">Frequency</th>    
                     <th style="width: 25%;">Income</th>
                     <th style="width: 25%;">Expenses</th>
-                    <th style="width: 25%;">Remaining</th>
+                    <th style="width: 25%;">Savings</th>
                 </tr>
                 <tr>
                     <td>

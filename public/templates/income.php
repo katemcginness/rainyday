@@ -196,7 +196,6 @@ if (isset($_POST['addincome'])) {
 <div class="container">
     <div class="col s12">
         <h5>Total income</h5>
-        <p>How do I add up all the annual incomes?</p>
         <p><?php echo '$' . $totalincome . " per year"; ?></p>
     </div>
 </div>

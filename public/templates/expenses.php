@@ -52,20 +52,15 @@ if (isset($_POST['addexpense'])) {
                     <label for="expenseamount">Expense amount (to the dollar)</label>
                 </div>
 
+
                 <div class="input-field col s4">
-                    <input type="text" name="expensefrequency" id="expensefrequency" class="validate">
-                    <label for="expensefrequency">Expense frequency</label>
+                <select name="expensefrequency" id="expensefrequency">
+                    <option value="Weekly">Weekly</option>
+                    <option value="Fortnightly">Fortnightly</option>
+                    <option value="Monthly">Monthly</option>
+                </select>
                 </div>
             
-                <!-- <div class="input-field col s4">
-                    <select name="incomefrequency" id="incomefrequency">
-                        <option value="">Choose frequency</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="fortnlightly">Fortnightly</option>
-                        <option value="monthly">Monthly</option>
-                    </select>    
-                    <label for="incomefrequency">Income frequency</label>
-                </div> -->
             </div>
             <div class="row">
             <input  class="btn waves-effect waves-light" type="submit" name="addexpense" value="Add expense">
@@ -160,11 +155,11 @@ if (isset($_GET["id"])) {
         <tr>
             <td style="display:none;"><?php echo $row['id']; ?></td>   
             <td style="width: 20%;"><?php echo $row['expensename']; ?></td>
-            <td style="width: 20%;"><?php echo $row['expenseamount']; ?></td>
+            <td style="width: 20%;"><?php echo '$' . $row['expenseamount']; ?></td>
             <td style="width: 20%;"><?php echo $row['expensefrequency']; ?></td>
             <td style="width: 20%;">
                 <a href='editexpenses.php?id=<?php echo $row['id']; ?>'>Edit</a> | 
-                <a href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
+                <a onclick="return confirm('Are you sure you want to delete?')" href='index.php?id=<?php echo $row['id']; ?>'>Delete</a>
             </td>
             <td style="width: 20%;">
                 <?php 
@@ -201,7 +196,6 @@ if (isset($_GET["id"])) {
 <div class="container">
     <div class="col s12">
         <h5>Total expenses</h5>
-        <p>How do I add up all the annual expenses?</p>
         <p><?php echo '$' . $totalexpenses . " per year"; ?></p>
     </div>
 </div>

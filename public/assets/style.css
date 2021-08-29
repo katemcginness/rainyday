@@ -1,5 +1,11 @@
 .visible {
     display: unset;
     visibility: visible;
+    margin: 7px;
     border: none;
+    border-bottom: 1px solid #9e9e9e;
+}
+
+.input-field .error {
+    color: #8b0000;
 }

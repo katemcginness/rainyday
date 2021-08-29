@@ -12,6 +12,7 @@
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="assets/materialize.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="assets/style.css"  media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -121,13 +122,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <div class="input-field col s12 <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
           <input id="username" name="username" type="text" class="validate" value="<?php echo $username; ?>">
           <label for="username">Username</label>
-          <span class="helper-text"><?php echo $username_err; ?></span>
+          <span class="helper-text error"><?php echo $username_err; ?></span>
         </div>
       
       <div class="input-field col s12 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
           <input id="password" type="password" class="validate" name="password">
           <label for="password">Password</label>
-          <span class="helper-text"><?php echo $password_err; ?></span>
+          <span class="helper-text error"><?php echo $password_err; ?></span>
         </div>
       
       <div class="input-field col s12">

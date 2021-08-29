@@ -7,6 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems, {});
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {});
-    var instance = M.Modal.getInstance(elem);
+    var instance = M.Modal.getInstance({});
   });
   

@@ -89,9 +89,32 @@ if (isset($_GET['id'])) {
                         <input type="text" name="expenseamount" id="expenseamount" class="validate" value="<?php echo escape($expenses['expenseamount']); ?>">
                     </div>
 
-                    <div class="col s4">
-                        <label for="expensefrequency">Expense amount (to the dollar)</label>
-                        <input type="text" name="expensefrequency" id="expensefrequency" class="validate" value="<?php echo escape($expenses['expensefrequency']); ?>">
+                    <div class="input-field col s4">
+                    <label class="active" for="expensefrequency">Expense frequency</label>
+                    <?php
+                    
+                        if($expenses['expensefrequency'] == "Weekly") {
+                            echo "<select class='visible' name='expensefrequency' id='expensefrequency'>
+                                <option selected value='Weekly'>Weekly</option>
+                                <option value='Fortnightly'>Fortnightly</option>
+                                <option value='Monthly'>Monthly</option>
+                            </select>";
+                        }
+                        elseif($expenses['expensefrequency'] == "Fortnightly") {
+                            echo "<select class='visible' name='expensefrequency' id='expensefrequency'>
+                                <option value='Weekly'>Weekly</option>
+                                <option selected value='Fortnightly'>Fortnightly</option>
+                                <option value='Monthly'>Monthly</option>
+                            </select>";
+                        }
+                        elseif($expenses['expensefrequency'] == "Monthly") {
+                            echo "<select class='visible' name='expensefrequency' id='expensefrequency'>
+                                <option value='Weekly'>Weekly</option>
+                                <option value='Fortnightly'>Fortnightly</option>
+                                <option selected value='Monthly'>Monthly</option>
+                            </select>";
+                        }
+                    ?>
                     </div>
                     
                     

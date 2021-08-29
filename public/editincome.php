@@ -88,11 +88,6 @@ if (isset($_GET['id'])) {
                         <label for="incomeamount">Income amount (to the dollar)</label>
                         <input type="text" name="incomeamount" id="incomeamount" class="validate" value="<?php echo escape($income['incomeamount']); ?>">
                     </div>
-
-                    <!-- <div class="col s4">
-                        <label for="incomefrequency">Income amount (to the dollar)</label>
-                        <input type="text" name="incomefrequency" id="incomefrequency" class="validate" value="<?php // echo escape($income['incomefrequency']); ?>">
-                    </div> -->
                     
                     <div class="input-field col s4">
                     <label class="active" for="incomefrequency">Income frequency</label>
