@@ -53,6 +53,11 @@ if (isset($_POST['addincome'])) {
                     }
                     
                     $statement->execute($income);
+                    echo "<div class='container'>
+                            <div class='col s12'>
+                                <p><i class='material-icons teal-text'>check_circle</i>Income successfully added</p>
+                            </div>
+                        </div>";
             
                 } 
                 catch (PDOException $error) {

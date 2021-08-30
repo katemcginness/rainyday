@@ -48,6 +48,11 @@ if (isset($_POST['addexpense'])) {
             }
 
             $statement->execute($expenses);
+            echo "<div class='container'>
+                            <div class='col s12'>
+                                <p><i class='material-icons teal-text'>check_circle</i>Expense successfully added</p>
+                            </div>
+                        </div>";
     
         } catch (PDOException $error) {
             // echo $sql . "<br>" . $error->getMessage();
