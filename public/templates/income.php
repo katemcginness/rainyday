@@ -1,37 +1,63 @@
 <div  id="income">
     <?php
+$annualincome = 0;
+$totalincome = 0;
+        $incomename_error = "";
+        $incomeamount_error = "";
+        $incomefrequency_error = "";
+
 if (isset($_POST['addincome'])) {
 
     // include the config file
         require "../config.php";
-    
-        try {
-    
-            $connection = new PDO($dsn, $username, $password, $options);
-    
-            $income = array(
-                "incomename" => $_POST['incomename'],
-                "incomeamount" => $_POST['incomeamount'],
-                "incomefrequency" => $_POST['incomefrequency'],
-            );
-    
-            $sql = "INSERT INTO income (
-                incomename,
-                incomeamount,
-                incomefrequency
-            ) VALUES (
-                :incomename,
-                :incomeamount,
-                :incomefrequency
-            )";
-    
-            $statement = $connection->prepare($sql);
-            $statement->execute($income);
-    
-        } catch (PDOException $error) {
-            echo $sql . "<br>" . $error->getMessage();
-        }
-    }
+
+        
+           
+            
+                try {
+            
+                    $connection = new PDO($dsn, $username, $password, $options);
+            
+                    $income = array(
+                        "userid" => $_SESSION['id'],
+                        "incomename" => $_POST['incomename'],
+                        "incomeamount" => $_POST['incomeamount'],
+                        "incomefrequency" => $_POST['incomefrequency'],
+                    );
+            
+                    $sql = "INSERT INTO income (
+                        userid,
+                        incomename,
+                        incomeamount,
+                        incomefrequency
+                    ) VALUES (
+                        :userid,
+                        :incomename,
+                        :incomeamount,
+                        :incomefrequency
+                    )";
+            
+                    $statement = $connection->prepare($sql);
+                    
+
+                    if (empty($_POST["incomename"])) {
+                        $incomename_error = "Income name is required";
+                    }
+                    if (empty($_POST["incomeamount"])) {
+                        $incomeamount_error = "Income amount is required";
+                    }
+                    if (empty($_POST["incomefrequency"])) {
+                        $incomefrequency_error = "Income name is required";
+                    }
+                    
+                    $statement->execute($income);
+            
+                } 
+                catch (PDOException $error) {
+                    echo $sql . "<br>" . $error->getMessage();
+                }
+            }
+        
 ?>
 
 <div class="container">
@@ -45,11 +71,14 @@ if (isset($_POST['addincome'])) {
                 <div class="input-field col s4">
                     <input type="text" name="incomename" id="incomename" class="validate">
                     <label for="incomename">Income name</label>
+                    <span class="helper-text error"><?php echo $incomename_error; ?></span>
+                    
                 </div>
             
                 <div class="input-field col s4">
                     <input type="text" name="incomeamount" id="incomeamount" class="validate">
                     <label for="incomeamount">Income amount (to the dollar)</label>
+                    <span class="helper-text error"><?php echo $incomeamount_error; ?>
                 </div>
 
                 <div class="input-field col s4">
@@ -58,6 +87,7 @@ if (isset($_POST['addincome'])) {
                     <option value="Fortnightly">Fortnightly</option>
                     <option value="Monthly">Monthly</option>
                 </select>
+                <span class="helper-text error"><?php echo $incomefrequency_error; ?>
                 </div>
             
                 
@@ -101,6 +131,7 @@ if (isset($_POST['addincome'])) {
             echo $sql . "<br>" . $error->getMessage();
         }
     };
+    
 // this is called a try/catch statement
     try {
 // FIRST: Connect to the database
@@ -141,8 +172,7 @@ if (isset($_POST['addincome'])) {
     </div>
     <?php
         // This is a loop, which will loop through each result in the array
-        $annualincome = 0;
-        $totalincome = 0;
+        
 
         foreach ($result as $row) {
                 

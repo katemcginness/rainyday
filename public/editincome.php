@@ -73,7 +73,6 @@ if (isset($_GET['id'])) {
 <div class="container">
     <div class="col s12">
         <h2>Edit income</h2>
-        <p>How to input the value into a select?</p>
             <form method="post">
                 <div class="row">
                     

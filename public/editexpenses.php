@@ -61,8 +61,8 @@ if (isset($_GET['id'])) {
         // now execute the statement
         $statement->execute();
 
-        // attach the sql statement to the new income variable so we can access it in the form
-        $income = $statement->fetch(PDO::FETCH_ASSOC);
+        // attach the sql statement to the new expenses variable so we can access it in the form
+        $expenses = $statement->fetch(PDO::FETCH_ASSOC);
 
     } catch (PDOExcpetion $error) {
         echo $sql . "<br>" . $error->getMessage();
@@ -73,7 +73,6 @@ if (isset($_GET['id'])) {
 <div class="container">
     <div class="col s12">
         <h2>Edit expense</h2>
-        <p>How to input the value into a select?</p>
             <form method="post">
                 <div class="row">
                     
@@ -88,7 +87,7 @@ if (isset($_GET['id'])) {
                         <label for="expenseamount">Expense amount (to the dollar)</label>
                         <input type="text" name="expenseamount" id="expenseamount" class="validate" value="<?php echo escape($expenses['expenseamount']); ?>">
                     </div>
-
+                    
                     <div class="input-field col s4">
                     <label class="active" for="expensefrequency">Expense frequency</label>
                     <?php
@@ -116,6 +115,8 @@ if (isset($_GET['id'])) {
                         }
                     ?>
                     </div>
+
+                
                     
                     
             

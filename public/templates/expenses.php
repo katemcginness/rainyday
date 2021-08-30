@@ -1,25 +1,32 @@
 <div id="expenses">
 <?php
+$annualexpenses = 0;
+$totalexpenses = 0;
+
 if (isset($_POST['addexpense'])) {
 
     // include the config file
         require "../config.php";
+        
     
         try {
     
             $connection = new PDO($dsn, $username, $password, $options);
     
             $expenses = array(
+                "userid" => $_SESSION['id'],
                 "expensename" => $_POST['expensename'],
                 "expenseamount" => $_POST['expenseamount'],
                 "expensefrequency" => $_POST['expensefrequency'],
             );
     
             $sql = "INSERT INTO expenses (
+                userid,
                 expensename,
                 expenseamount,
                 expensefrequency
             ) VALUES (
+                :userid,
                 :expensename,
                 :expenseamount,
                 :expensefrequency
@@ -143,8 +150,7 @@ if (isset($_GET["id"])) {
     </div>
     </div>
     <?php
-        $annualexpenses = 0;
-        $totalexpenses = 0;
+        
 
        // This is a loop, which will loop through each result in the array
             foreach ($result as $row) {
