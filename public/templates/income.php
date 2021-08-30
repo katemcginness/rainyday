@@ -1,7 +1,9 @@
 <div  id="income">
     <?php
-$annualincome = 0;
-$totalincome = 0;
+    // session_start();
+
+        $annualincome = 0;
+        $totalincome = 0;
         $incomename_error = "";
         $incomeamount_error = "";
         $incomefrequency_error = "";
@@ -54,7 +56,7 @@ if (isset($_POST['addincome'])) {
             
                 } 
                 catch (PDOException $error) {
-                    echo $sql . "<br>" . $error->getMessage();
+                    // echo $sql . "<br>" . $error->getMessage();
                 }
             }
         
@@ -137,9 +139,11 @@ if (isset($_POST['addincome'])) {
 // FIRST: Connect to the database
         $connection = new PDO($dsn, $username, $password, $options);
 // SECOND: Create the SQL
-        $sql = "SELECT * FROM income";
+        $sql = "SELECT * FROM income WHERE userid=:uid";
+        
 // THIRD: Prepare the SQL
         $statement = $connection->prepare($sql);
+        $statement->bindValue(':uid', $_SESSION['id']);
         $statement->execute();
 // FOURTH: Put it into a $result object that we can access in the page
         $result = $statement->fetchAll();

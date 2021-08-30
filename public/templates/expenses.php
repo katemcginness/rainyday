@@ -1,7 +1,10 @@
 <div id="expenses">
 <?php
-$annualexpenses = 0;
-$totalexpenses = 0;
+    $annualexpenses = 0;
+    $totalexpenses = 0;
+    $expensename_error = "";
+    $expenseamount_error = "";
+    $expensefrequency_error = "";
 
 if (isset($_POST['addexpense'])) {
 
@@ -33,10 +36,21 @@ if (isset($_POST['addexpense'])) {
             )";
     
             $statement = $connection->prepare($sql);
+
+            if (empty($_POST["expensename"])) {
+                $expensename_error = "Expense name is required";
+            }
+            if (empty($_POST["expenseamount"])) {
+                $expenseamount_error = "Expense amount is required";
+            }
+            if (empty($_POST["expensefrequency"])) {
+                $expensefrequency_error = "Expense name is required";
+            }
+
             $statement->execute($expenses);
     
         } catch (PDOException $error) {
-            echo $sql . "<br>" . $error->getMessage();
+            // echo $sql . "<br>" . $error->getMessage();
         }
     }
 ?>
@@ -52,11 +66,13 @@ if (isset($_POST['addexpense'])) {
                 <div class="input-field col s4">
                     <input type="text" name="expensename" id="expensename" class="validate">
                     <label for="expensename">Expense name</label>
+                    <span class="helper-text error"><?php echo $expensename_error; ?></span>
                 </div>
             
                 <div class="input-field col s4">
                     <input type="text" name="expenseamount" id="expenseamount" class="validate">
                     <label for="expenseamount">Expense amount (to the dollar)</label>
+                    <span class="helper-text error"><?php echo $expenseamount_error; ?></span>
                 </div>
 
 
@@ -115,9 +131,10 @@ if (isset($_GET["id"])) {
 // FIRST: Connect to the database
         $connection = new PDO($dsn, $username, $password, $options);
 // SECOND: Create the SQL
-        $sql = "SELECT * FROM expenses";
+        $sql = "SELECT * FROM expenses WHERE userid=:uid";
 // THIRD: Prepare the SQL
         $statement = $connection->prepare($sql);
+        $statement->bindValue(':uid', $_SESSION['id']);
         $statement->execute();
 // FOURTH: Put it into a $result object that we can access in the page
         $result = $statement->fetchAll();
