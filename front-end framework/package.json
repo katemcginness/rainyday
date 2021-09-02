@@ -7,9 +7,14 @@
     "build-scss": "node-sass src/sass/materialize.scss ../public/assets/materialize.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "katemcginness",
   "license": "ISC",
   "dependencies": {
     "node-sass": "^6.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "rainyday"
   }
 }
