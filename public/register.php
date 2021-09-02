@@ -1,9 +1,4 @@
-
-    
 <?php
-
-include "templates/navnew.php";
-
 // Include config file
 require_once "../config.php";
  
@@ -94,6 +89,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     unset($pdo_connection);
 }
+include "templates/navnew.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

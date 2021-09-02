@@ -1,9 +1,4 @@
-
-    
 <?php 
-
-ob_start();
-// Initialize the session
 session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
@@ -58,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
-                            session_start();
+                            // session_start();
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;

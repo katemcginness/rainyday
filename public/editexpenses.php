@@ -138,4 +138,6 @@ if (isset($_GET['id'])) {
     echo "No id - something went wrong";
     //exit;
 }
+include "templates/footer.php";
+
 ?>
