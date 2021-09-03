@@ -36,7 +36,12 @@ if (isset($_GET['id'])) {
             
                 //execute sql statement
                 $statement->execute($expenses);
-  
+                // alert user of success
+                echo "<div class='container'>
+                        <div class='col s12'>
+                            <p><i class='material-icons teal-text'>check_circle</i>Expense successfully updated</p>
+                        </div>
+                    </div>";
                 
                 } catch(PDOException $error) {
                 echo $sql . "<br>" . $error->getMessage();
@@ -60,7 +65,7 @@ if (isset($_GET['id'])) {
 
         // now execute the statement
         $statement->execute();
-
+        
         // attach the sql statement to the new expenses variable so we can access it in the form
         $expenses = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -93,21 +98,21 @@ if (isset($_GET['id'])) {
                     <?php
                     
                         if($expenses['expensefrequency'] == "Weekly") {
-                            echo "<select class='visible' name='expensefrequency' id='expensefrequency'>
+                            echo "<select name='expensefrequency' id='expensefrequency'>
                                 <option selected value='Weekly'>Weekly</option>
                                 <option value='Fortnightly'>Fortnightly</option>
                                 <option value='Monthly'>Monthly</option>
                             </select>";
                         }
                         elseif($expenses['expensefrequency'] == "Fortnightly") {
-                            echo "<select class='visible' name='expensefrequency' id='expensefrequency'>
+                            echo "<select name='expensefrequency' id='expensefrequency'>
                                 <option value='Weekly'>Weekly</option>
                                 <option selected value='Fortnightly'>Fortnightly</option>
                                 <option value='Monthly'>Monthly</option>
                             </select>";
                         }
                         elseif($expenses['expensefrequency'] == "Monthly") {
-                            echo "<select class='visible' name='expensefrequency' id='expensefrequency'>
+                            echo "<select name='expensefrequency' id='expensefrequency'>
                                 <option value='Weekly'>Weekly</option>
                                 <option value='Fortnightly'>Fortnightly</option>
                                 <option selected value='Monthly'>Monthly</option>

@@ -23,5 +23,3 @@ CREATE TABLE `income` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-bewdtester
-NEsMb#!MV$7jFZQ8g!SM

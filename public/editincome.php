@@ -36,7 +36,12 @@ if (isset($_GET['id'])) {
             
                 //execute sql statement
                 $statement->execute($income);
-  
+                // alert user of success
+                echo "<div class='container'>
+                        <div class='col s12'>
+                            <p><i class='material-icons teal-text'>check_circle</i>Income successfully updated</p>
+                        </div>
+                     </div>";
                 
                 } catch(PDOException $error) {
                 echo $sql . "<br>" . $error->getMessage();
