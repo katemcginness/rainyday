@@ -98,21 +98,21 @@ if (isset($_GET['id'])) {
                     <?php
                     
                         if($income['incomefrequency'] == "Weekly") {
-                            echo "<select class='visible' name='incomefrequency' id='incomefrequency'>
+                            echo "<select name='incomefrequency' id='incomefrequency'>
                                 <option selected value='Weekly'>Weekly</option>
                                 <option value='Fortnightly'>Fortnightly</option>
                                 <option value='Monthly'>Monthly</option>
                             </select>";
                         }
                         elseif($income['incomefrequency'] == "Fortnightly") {
-                            echo "<select class='visible' name='incomefrequency' id='incomefrequency'>
+                            echo "<select name='incomefrequency' id='incomefrequency'>
                                 <option value='Weekly'>Weekly</option>
                                 <option selected value='Fortnightly'>Fortnightly</option>
                                 <option value='Monthly'>Monthly</option>
                             </select>";
                         }
                         elseif($income['incomefrequency'] == "Monthly") {
-                            echo "<select class='visible' name='incomefrequency' id='incomefrequency'>
+                            echo "<select name='incomefrequency' id='incomefrequency'>
                                 <option value='Weekly'>Weekly</option>
                                 <option value='Fortnightly'>Fortnightly</option>
                                 <option selected value='Monthly'>Monthly</option>
